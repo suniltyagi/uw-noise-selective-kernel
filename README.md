@@ -16,12 +16,14 @@ Here, the model **learns its own spectrogram** directly from raw waveforms.
 
 ### **Raw → SKConv1D → Learned Spectrogram → SKConv2D → Embedding → SSL → Clustering**
 
+````md
 ```mermaid
-flowchart TD 
+flowchart TD
 %% Style settings
 classDef module fill:#f2f7ff,stroke:#3366cc,stroke-width:1px,color:#000;
 classDef process fill:#e8fff2,stroke:#33aa55,stroke-width:1px,color:#000;
 classDef loss fill:#fff2e6,stroke:#ff9933,stroke-width:1px,color:#000;
+
 %% Nodes
 A1[1. Raw Audio (x)]:::module
 A2[2. SKConv1D Filterbank<br/>(Multi-Scale Time-Domain Filters)]:::process
@@ -35,11 +37,14 @@ D1[9. Projector Head g(h)]:::module
 D2[10. Projected Embeddings z₁, z₂]:::module
 E1[11. Barlow Twins Loss<br/>(Invariance + Decorrelation)]:::loss
 E2[12. Update Encoder Parameters]:::process
+
 %% Main forward path
 A1 --> A2 --> A3 --> A4 --> A5
+
 %% SSL Branching
 A5 -->|Used during SSL| B1
 A5 -->|Used during SSL| B2
 B1 --> C1
 B2 --> C1
 C1 --> D1 --> D2 --> E1 --> E2
+```
