@@ -16,7 +16,6 @@ Here, the model **learns its own spectrogram** directly from raw waveforms.
 
 ### **Raw → SKConv1D → Learned Spectrogram → SKConv2D → Embedding → SSL → Clustering**
 
-```md
 ```mermaid
 flowchart TD
 %% Style settings
